@@ -1,4 +1,6 @@
 class Foo {}
-~~~~~~~~~~~~ [fail]
+
+class Bar extends Foo {}
+~~~~~~~~~~~~~~~~~~~~~~~~ [fail]
 
 [fail]: No subclasses allowed

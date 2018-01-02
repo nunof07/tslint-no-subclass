@@ -29,8 +29,21 @@ class NoSubclassWalker extends Lint.AbstractWalker<Set<string>> {
     }
 
     public isInvalidNode(node: ts.Node): boolean {
-        return node &&
-            (node.kind === ts.SyntaxKind.ClassKeyword || node.kind === ts.SyntaxKind.ClassDeclaration);
+        return this.isClassLikeDeclaration(node) && this.hasExtends(node);
     
+    }
+
+    public isClassLikeDeclaration(node: ts.Node): boolean {
+        return node &&
+            (node.kind === ts.SyntaxKind.ClassDeclaration || node.kind === ts.SyntaxKind.ClassExpression);
+    }
+
+    public hasExtends(node: ts.Node): boolean {
+        if (!node || (<any>node).heritageClauses === undefined) {
+            return false;
+        }
+        const heritage = (<{ heritageClauses: ts.HeritageClause[] }><any>node).heritageClauses;
+
+        return heritage.some(clause => clause.token === ts.SyntaxKind.ExtendsKeyword);
     }
 }
