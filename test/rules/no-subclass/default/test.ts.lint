@@ -1,0 +1,2 @@
+class Foo {}
+~~~~~~~~~~~~ [No subclasses allowed.]
