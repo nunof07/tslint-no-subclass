@@ -2,25 +2,35 @@ import * as ts from "typescript";
 import * as Lint from "tslint";
 
 export class Rule extends Lint.Rules.AbstractRule {
+    public static FAILURE_STRING = "No subclasses allowed";
+
     public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
-        return this.applyWithFunction(sourceFile, walk);
-    }
-};
-
-function walk(ctx: Lint.WalkContext<void>) {
-    return ts.forEachChild(ctx.sourceFile, cb);
-
-    function cb(node: ts.Node): void {
-        if (isInvalidNode(node)) {
-            ctx.addFailureAtNode(node, "No subclasses allowed.");
-        }
-        
-        return ts.forEachChild(node, cb);
+        return this.applyWithWalker(
+            new NoSubclassWalker(
+                sourceFile,
+                this.ruleName,
+                new Set(this.ruleArguments.map(String))
+            )
+        );
     }
 }
 
-function isInvalidNode(node: ts.Node): boolean {
-    return node &&
-        (node.kind === ts.SyntaxKind.ClassKeyword || node.kind === ts.SyntaxKind.ClassDeclaration);
+class NoSubclassWalker extends Lint.AbstractWalker<Set<string>> {
+    public walk(sourceFile: ts.SourceFile) {
+        const cb = (node: ts.Node): void => {
+            if (this.isInvalidNode(node)) {
+                this.addFailureAtNode(node, Rule.FAILURE_STRING);
+            }
+    
+            return ts.forEachChild(node, cb);
+        };
 
+        return ts.forEachChild(sourceFile, cb);
+    }
+
+    public isInvalidNode(node: ts.Node): boolean {
+        return node &&
+            (node.kind === ts.SyntaxKind.ClassKeyword || node.kind === ts.SyntaxKind.ClassDeclaration);
+    
+    }
 }

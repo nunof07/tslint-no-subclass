@@ -1,2 +1,4 @@
 class Foo {}
-~~~~~~~~~~~~ [No subclasses allowed.]
+~~~~~~~~~~~~ [fail]
+
+[fail]: No subclasses allowed
