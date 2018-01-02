@@ -2,7 +2,7 @@
   "name": "tslint-no-subclass",
   "version": "0.1.0",
   "description": "TSLint rule to prevent class inheritance",
-  "main": "index.js",
+  "main": "tslint-no-subclass.json",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
