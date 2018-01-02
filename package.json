@@ -2,8 +2,9 @@
   "name": "tslint-no-subclass",
   "version": "0.1.0",
   "description": "TSLint rule to prevent class inheritance",
-  "main": "tslint-no-subclass.json",
+  "main": "index.js",
   "scripts": {
+    "build": "tsc -p tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/nunof07/tslint-no-subclass#readme",
   "devDependencies": {
+    "@types/node": "^8.5.2",
     "tslint": "^5.8.0",
     "typescript": "^2.6.2"
   }
