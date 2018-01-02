@@ -1,0 +1,25 @@
+{
+  "name": "tslint-no-subclass",
+  "version": "0.1.0",
+  "description": "TSLint rule to prevent class inheritance",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nunof07/tslint-no-subclass.git"
+  },
+  "keywords": [
+    "tslint",
+    "tslint-plugin",
+    "typescript",
+    "lint"
+  ],
+  "author": "Nuno Freitas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nunof07/tslint-no-subclass/issues"
+  },
+  "homepage": "https://github.com/nunof07/tslint-no-subclass#readme"
+}
