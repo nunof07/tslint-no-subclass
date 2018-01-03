@@ -1,6 +1,10 @@
-class Foo {}
+class Disallow {}
 
-class Bar extends Foo {}
-~~~~~~~~~~~~~~~~~~~~~~~~ [fail]
+class Invalid extends Disallow {}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ [fail]
 
-[fail]: No subclasses allowed
+class Allow {}
+
+class Valid extends Allow {}
+
+[fail]: Subclass not allowed

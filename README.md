@@ -27,10 +27,42 @@ Add the following to `tslint.json`:
 }
 ```
 
+### Allow inheritance for specific classes
+
+```json
+{
+    "extends": [
+        "tslint-no-subclass"
+    ],
+    "rules": {
+        "no-subclass": [true, "Foo", "Bar"]
+    }
+}
+```
+
 ## Example
 
-```typescript
-class Foo {}
+Config:
 
-class Bar extends Foo {} // Error: No subclasses allowed
+```json
+{
+    "extends": [
+        "tslint-no-subclass"
+    ],
+    "rules": {
+        "no-subclass": [true, "Allow"]
+    }
+}
+```
+
+Source code:
+
+```typescript
+class Allow {}
+
+class Valid extends Allow {} // Valid because "Allow" was added to rule exceptions
+
+class Disallow {}
+
+class Invalid extends Disallow {} // Error: Subclass not allowed
 ```
