@@ -1,6 +1,6 @@
 {
   "name": "tslint-no-subclass",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "TSLint rule to prevent class inheritance",
   "main": "index.js",
   "scripts": {
